@@ -5,7 +5,7 @@ import './App.css';
 
 export default function Cart() {
     const [cart, setCart] = useState([])
-    const [products, setproducts] = useState([
+    const [products] = useState([
         {
             id: '01',
             title: "Jacket 01",
@@ -43,7 +43,7 @@ export default function Cart() {
             })
 
             // setCart(pre => {
-            //     return pre.concat([value])
+            //     return pre.concat([value]) ye bhi kar saktay hain 
             // })
         } else {
             alert('cart already added')
@@ -51,9 +51,8 @@ export default function Cart() {
     }
 
     function increament(value) {
-        var match = cart.find((cart) => cart.qty === value.qty)
-        // var qty = increament.qty
-
+        var match = cart.find((cart) => cart.id === value.id)
+        console.log('match the value', match)
         if (match) {
             setCart(
                 cart.map((cart) =>
@@ -61,15 +60,11 @@ export default function Cart() {
                 )
             )
         }
-
-
-
     }
     function decreament(value) {
-        var match = cart.find((cart) => cart.qty === value.qty)
-        // var qty = increament.qty
+        var match = cart.find((cart) => cart.id === value.id)
 
-        if (match.qty === 1) {
+        if (match) {
             setCart(
                 cart.map((cart) =>
                     cart.id === value.id ? { ...match, qty: match.qty - 1 } : cart
